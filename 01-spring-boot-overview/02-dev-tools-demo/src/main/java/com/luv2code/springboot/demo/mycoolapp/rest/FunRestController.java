@@ -1,10 +1,14 @@
 package com.luv2code.springboot.demo.mycoolapp.rest;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FunRestController {
+
+    @Value("${fruit.favorite}")
+    private String favoriteFruit;
 
     // expose "/" that return "Hello World"
 
@@ -14,6 +18,16 @@ public class FunRestController {
     }
 
     // expose a new endpoint for "workout"
+    @GetMapping("/fruit")
+    public String SuggestFruit()
+    {
+        return "Apples and " + favoriteFruit;
+    }
+
+
+
+
+
 
     @GetMapping("/workout")
     public String getDailyWorkout() {
